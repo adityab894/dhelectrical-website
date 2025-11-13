@@ -84,7 +84,7 @@ export default function Footer() {
         </div>
 
         <div className="copyright">
-          <p>© 2025 Industrial Heat Solutions Inc. All rights reserved.</p>
+          <p>© 2025 Darshil Heat Electrical Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>

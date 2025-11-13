@@ -1,185 +1,99 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { productCatalog } from '../data/products';
 
 export default function Products() {
+  const [openProductIdx, setOpenProductIdx] = React.useState(null);
+
+  const toggleDropdown = (idx) => {
+    setOpenProductIdx((current) => (current === idx ? null : idx));
+  };
+
+  const closeDropdown = () => setOpenProductIdx(null);
+
+  React.useEffect(() => {
+    const onDocClick = (e) => {
+      if (!e.target.closest('.product-actions')) {
+        closeDropdown();
+      }
+    };
+    document.addEventListener('click', onDocClick);
+    return () => document.removeEventListener('click', onDocClick);
+  }, []);
+
   return (
     <main className="page">
-      <div className="products-panel about-us">
-        <div className="common">
-          <h2 className="title2">Manufacturing Range</h2>
-          <div className="product-list fl-width">
-            <ul className="fl-width">
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-1.png" alt="" />
-                </div>
-                <div className="product-title">Band Heaters</div>
-                <div className="sub-product-list">
-                  <ul className="dropdown-2">
-                    <li><a href="#">Ceramic Band Heaters</a></li>
-                    <li><a href="#">Energy Saving Band Heaters</a></li>
-                    <li><a href="#">Ceramic Die Heaters</a></li>
-                    <li><a href="#">Air Cooled Ceramic Band Heaters</a></li>
-                    <li><a href="#">Energy Saving Insulation Jackets for Band Heaters</a></li>
-                    <li><a href="#">Alumimium Cast Band Heater</a></li>
-                    <li><a href="#">Mica Band Heater</a></li>
-                  </ul>
-                </div>
-              </li>
+      <section id="products" className="products">
+        <div className="container">
+          <div className="section-header text-center">
+            <h1 className="section-title">Our Product Categories</h1>
+            <p className="section-subtitle">
+              Explore our comprehensive portfolio of industrial heaters, sensors, and control solutions.
+            </p>
+          </div>
 
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-2.png" alt="" />
-                </div>
-                <div className="product-title">Nozzle Heaters</div>
-                <div className="sub-product-list">
-                  <ul className="dropdown-2">
-                    <li><a href="#">Coil Type Nozzle Heaters</a></li>
-                    <li><a href="#">Sealed Mica Nozzle Heaters</a></li>
-                  </ul>
-                </div>
-              </li>
-
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-3.png" alt="" />
-                </div>
-                <div className="product-title">Cartridge Heaters</div>
-                <div className="sub-product-list">
-                  <ul className="dropdown-2">
-                    <li><a href="#">High Density Cartridge Heaters</a></li>
-                    <li><a href="#">Low &amp; Medium Density Cartridge Heaters</a></li>
-                  </ul>
-                </div>
-              </li>
-
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-4.png" alt="" />
-                </div>
-                <div className="product-title">Coil Heaters</div>
-                <div className="sub-product-list">
-                  <ul className="dropdown-2">
-                    <li><a href="#">Micro Tubular Coil Heaters</a></li>
-                    <li><a href="#">Mini Coil Heaters</a></li>
-                    <li><a href="#">Pressed in Brass Coil Heater</a></li>
-                    <li><a href="#">Micro Coil Heaters</a></li>
-                    <li><a href="#">Coil Heaters with Stainless Steel &amp; Brass Casted Covers</a></li>
-                  </ul>
-                </div>
-              </li>
-
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-5.png" alt="" />
-                </div>
-                <div className="product-title">Strip Heaters</div>
-                <div className="sub-product-list">
-                  <ul className="dropdown-2">
-                    <li><a href="#">Mica Strip Heaters</a></li>
-                    <li><a href="#">Ceramic Strip Heaters</a></li>
-                    <li><a href="#">Finned Strip Heaters</a></li>
-                  </ul>
-                </div>
-              </li>
-
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-7.png" alt="" />
-                </div>
-                <div className="product-title">Infrared Heaters</div>
-                <div className="sub-product-list">
-                  <ul className="dropdown-2">
-                    <li><a href="#">Shortwave Infrared Heaters</a></li>
-                    <li><a href="#">Medium Wave Quartz Infrared Heaters</a></li>
-                    <li><a href="#">Ceramic Infrared Heaters</a></li>
-                  </ul>
-                </div>
-              </li>
-
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-6.png" alt="" />
-                </div>
-                <div className="product-title">Manifold Heaters</div>
-                <div className="sub-product-list">
-                  <ul className="dropdown-2">
-                    <li><a href="#">Flexible Tubular Heaters</a></li>
-                    <li><a href="#">Manifold Tubular Heaters</a></li>
-                  </ul>
-                </div>
-              </li>
-
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-8.png" alt="" />
-                </div>
-                <div className="product-title">Tubular Heating Elements</div>
-                <div className="sub-product-list">
-                  <ul className="dropdown-2">
-                    <li><a href="#">Tubular Heaters</a></li>
-                    <li><a href="#">Finned Tubular Heaters</a></li>
-                    <li><a href="#">Immersion Heaters</a></li>
-                  </ul>
-                </div>
-              </li>
-
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-9.png" alt="" />
-                </div>
-                <div className="product-title">Porcelain Heaters</div>
-                <div className="clear spacer"></div>
-                <p className="readmore3">
-                  <a className="hvr-reveal" href="#">Read more</a>
-                </p>
-              </li>
-
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-10.png" alt="" />
-                </div>
-                <div className="product-title">Thermocouples</div>
-                <div className="clear spacer"></div>
-                <p className="readmore3">
-                  <a className="hvr-reveal" href="#">Read more</a>
-                </p>
-              </li>
-
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-11.png" alt="" />
-                </div>
-                <div className="product-title">Temperature Controllers, Timers &amp; Counters</div>
-                <div className="sub-product-list">
-                  <ul className="dropdown-2">
-                    <li><a href="#">PID Controllers</a></li>
-                    <li><a href="#">Digital Temperature Controller</a></li>
-                    <li><a href="#">Analog Temperature Controller</a></li>
-                    <li><a href="#">Presettable Counters</a></li>
-                    <li><a href="#">Presettable Timers</a></li>
-                  </ul>
-                </div>
-              </li>
-
-              <li>
-                <div className="product-img">
-                  <img src="images/product-img-12.png" alt="" />
-                </div>
-                <div className="product-title">Accessories</div>
-                <div className="sub-product-list">
-                  <ul className="dropdown-2">
-                    <li><a href="#">Single Inlet Blower</a></li>
-                    <li><a href="#">Double Inlet Blower</a></li>
-                    <li><a href="#">Plugs</a></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
+          <div className="products-grid">
+            {productCatalog.map((category, idx) => {
+              const hasItems = category.products.length > 0;
+              const highlightProducts = category.products.slice(0, 6);
+              return (
+                <article
+                  key={category.slug}
+                  className={`product-card ${openProductIdx === idx ? 'is-open' : ''}`}
+                >
+                  <div className="product-image">
+                    <img src={category.heroImage} alt={category.name} loading="lazy" />
+                  </div>
+                  <div className="product-content">
+                    <h3 className="product-title">{category.name}</h3>
+                    <p className="product-description">{category.description}</p>
+                    <div className="product-actions">
+                      {hasItems ? (
+                        <div className="product-select">
+                          <button
+                            type="button"
+                            className="product-link product-link--select"
+                            onClick={() => toggleDropdown(idx)}
+                            aria-expanded={openProductIdx === idx}
+                            aria-haspopup="menu"
+                          >
+                            Explore Products
+                          </button>
+                          {openProductIdx === idx && (
+                            <ul className="product-dropdown" role="menu">
+                              {highlightProducts.map((product) => (
+                                <li key={product.slug} role="menuitem">
+                                  <Link
+                                    to={`/${category.slug}/${product.slug}`}
+                                    onClick={closeDropdown}
+                                  >
+                                    {product.name}
+                                  </Link>
+                                </li>
+                              ))}
+                              {category.products.length > highlightProducts.length && (
+                                <li role="menuitem">
+                                  <Link to={`/products#${category.slug}`} onClick={closeDropdown}>
+                                    View all {category.products.length} products
+                                  </Link>
+                                </li>
+                              )}
+                            </ul>
+                          )}
+                        </div>
+                      ) : (
+                        <button type="button" className="product-link product-link--solid">
+                          Read More
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
-
-
